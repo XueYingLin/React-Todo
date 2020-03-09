@@ -37,9 +37,9 @@ class App extends React.Component {
     }
   }
 
-  togglePurchased = clickedItemId => {
+  toggleCompleted = clickedItemId => {
     this.setState({
-      groceries: this.state.tasks.map(item => {
+      tasks: this.state.tasks.map(item => {
         if (item.id === clickedItemId) {
           return {
             ...item,
@@ -64,6 +64,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.state.tasks)
     return (
       <div>
         <div>
@@ -72,7 +73,7 @@ class App extends React.Component {
         </div>
         <TodoList
           tasks={this.state.tasks}
-          toggleCompleted={this.toggleComplesed} />
+          toggleCompleted={this.toggleCompleted} />
       </div>
     );
   }
