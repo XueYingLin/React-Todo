@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import TodoList from "./components/TodoList";
 import TodoForm from "./components/TodoForm";
-
+import "./Styles.css";
 
 
 const tasks = [
@@ -54,13 +54,21 @@ class App extends React.Component {
 
   addTask = taskName => {
     const newTask = {
-    name: taskName,
+    task: taskName,
     id: new Date(),
     compleated: false
     };
     this.setState({
       tasks: [...this.state.tasks, newTask]
     });
+  }
+
+  clearCompleted = () => {
+    this.setState({
+      tasks: this.state.tasks.filter(item => 
+        !item.completed
+      )
+    })
   }
 
   render() {
@@ -71,9 +79,10 @@ class App extends React.Component {
           <h2>Welcome to your Todo App!</h2>
           <TodoForm addTask={this.addTask} />
         </div>
-        <TodoList
-          tasks={this.state.tasks}
-          toggleCompleted={this.toggleCompleted} />
+          <TodoList
+            tasks={this.state.tasks}
+            toggleCompleted={this.toggleCompleted}
+            clearCompleted={this.clearCompleted} />
       </div>
     );
   }
